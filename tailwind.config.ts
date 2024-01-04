@@ -74,7 +74,10 @@ const config = {
             },
             backgroundImage: {
                 "services-bg": "url('/images/services-bg.png')",
-                "services-illustration": "url('/images/services-illustration.svg')",
+                "services-illustration":
+                    "url('/images/services-illustration.svg')",
+                "terms-background": "url('/images/terms-background.svg')",
+                "privacy-background": "url('/images/privacy-background.svg')",
             },
         },
     },

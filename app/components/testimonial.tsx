@@ -1,6 +1,5 @@
 "use client";
 
-import { Barlow } from "next/font/google";
 import Image from "next/image";
 
 import {
@@ -12,17 +11,17 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { testimonials } from "@/constants/testimonials";
-
-const barlow = Barlow({
-    subsets: ["latin"],
-    display: "swap",
-    weight: "600",
-});
+import { recoleta, barlow } from "@/lib/fonts";
 
 export const Testimonial = () => {
     return (
         <section className="w-full px-6 mb-12 flex flex-col items-center md:px-16 md:mb-24 lg:container lg:mx-auto lg:mb-36">
-            <span className="bg-white text-[#537188] text-sm font-medium rounded-full px-4 py-1 mb-6">
+            <span
+                className={cn(
+                    barlow.className,
+                    "bg-white text-[#537188] text-sm font-medium rounded-full px-4 py-1 mb-6",
+                )}
+            >
                 Depoimentos de clientes
             </span>
 
@@ -39,7 +38,12 @@ export const Testimonial = () => {
                                     className="object-contain object-center"
                                 />
 
-                                <p className="text-2xl font-normal text-center text-gray-800 md:text-3xl">
+                                <p
+                                    className={cn(
+                                        recoleta.className,
+                                        "text-2xl font-normal text-center text-gray-800 md:text-3xl",
+                                    )}
+                                >
                                     {testimonial.desc}
                                 </p>
 

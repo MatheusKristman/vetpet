@@ -1,15 +1,20 @@
+"use client";
+
 import Image from "next/image";
-import { Barlow } from "next/font/google";
+import Link from "next/link";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-
-const barlow = Barlow({
-    subsets: ["latin"],
-    display: "swap",
-    weight: ["600"],
-});
+import { barlow } from "@/lib/fonts";
 
 export const Footer = () => {
+    const pathname = usePathname();
+
+    function scrollToTop() {
+        scroll.scrollToTop();
+    }
+
     return (
         <footer className="w-full bg-orange-100">
             <div className="w-full flex flex-col px-6 md:px-16 lg:container lg:mx-auto">
@@ -19,92 +24,135 @@ export const Footer = () => {
                         alt="VetPet"
                         width="200"
                         height="65"
-                        className="object-contain"
+                        className="object-contain cursor-pointer"
+                        onClick={scrollToTop}
                     />
 
                     <ul className="flex flex-col items-center gap-y-5 md:items-end lg:flex-row lg:gap-x-6">
-                        <li className="flex items-center gap-x-2">
-                            <div className="w-6 h-[2px] bg-[#537188] rounded-full md:hidden" />
+                        {pathname === "/termos-de-uso" ||
+                        pathname === "/politica-de-privacidade" ? (
+                            <li className="flex items-center gap-x-2 group lg:justify-end">
+                                <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all md:hidden group-hover:w-9" />
 
-                            <span
-                                className={cn(
-                                    barlow.className,
-                                    "text-base font-semibold text-[#537188]"
-                                )}
-                            >
-                                Quem Somos
-                            </span>
+                                <Link
+                                    href="/"
+                                    className={cn(
+                                        barlow.className,
+                                        "text-base font-semibold text-[#537188] cursor-pointer",
+                                    )}
+                                >
+                                    Voltar para início
+                                </Link>
 
-                            <div className="w-6 h-[2px] bg-[#537188] rounded-full" />
-                        </li>
+                                <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all group-hover:w-9" />
+                            </li>
+                        ) : (
+                            <>
+                                <li className="flex items-center gap-x-2 group lg:w-[146px] lg:justify-end">
+                                    <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all md:hidden group-hover:w-9" />
 
-                        <li className="flex items-center gap-x-2">
-                            <div className="w-6 h-[2px] bg-[#537188] rounded-full md:hidden" />
+                                    <ScrollLink
+                                        activeClass="active"
+                                        to="about"
+                                        spy
+                                        smooth
+                                        offset={-100}
+                                        duration={500}
+                                        className={cn(
+                                            barlow.className,
+                                            "text-base font-semibold text-[#537188] cursor-pointer",
+                                        )}
+                                    >
+                                        Quem Somos
+                                    </ScrollLink>
 
-                            <span
-                                className={cn(
-                                    barlow.className,
-                                    "text-base font-semibold text-[#537188]"
-                                )}
-                            >
-                                Nossos Serviços
-                            </span>
+                                    <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all group-hover:w-9" />
+                                </li>
 
-                            <div className="w-6 h-[2px] bg-[#537188] rounded-full" />
-                        </li>
+                                <li className="flex items-center gap-x-2 group lg:w-[171px] lg:justify-end">
+                                    <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all md:hidden group-hover:w-9" />
 
-                        <li className="flex items-center gap-x-2">
-                            <div className="w-6 h-[2px] bg-[#537188] rounded-full md:hidden" />
+                                    <ScrollLink
+                                        activeClass="active"
+                                        to="services"
+                                        spy
+                                        smooth
+                                        offset={-100}
+                                        duration={500}
+                                        className={cn(
+                                            barlow.className,
+                                            "text-base font-semibold text-[#537188] cursor-pointer",
+                                        )}
+                                    >
+                                        Nossos Serviços
+                                    </ScrollLink>
 
-                            <span
-                                className={cn(
-                                    barlow.className,
-                                    "text-base font-semibold text-[#537188]"
-                                )}
-                            >
-                                Perguntas Frequentes
-                            </span>
+                                    <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all group-hover:w-9" />
+                                </li>
 
-                            <div className="w-6 h-[2px] bg-[#537188] rounded-full" />
-                        </li>
+                                <li className="flex items-center gap-x-2 group lg:w-[210px] lg:justify-end">
+                                    <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all md:hidden group-hover:w-9" />
+
+                                    <ScrollLink
+                                        activeClass="active"
+                                        to="faq"
+                                        spy
+                                        smooth
+                                        offset={-100}
+                                        duration={500}
+                                        className={cn(
+                                            barlow.className,
+                                            "text-base font-semibold text-[#537188] cursor-pointer",
+                                        )}
+                                    >
+                                        Perguntas Frequentes
+                                    </ScrollLink>
+
+                                    <div className="w-6 h-[2px] bg-[#537188] rounded-full transition-all group-hover:w-9" />
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
 
                 <div className="w-full flex flex-col items-center gap-y-4 py-6 lg:flex-row lg:justify-between">
                     <span
-                        className={cn(
-                            barlow.className,
-                            "text-base font-semibold text-[#537188]"
-                        )}
+                        className={cn(barlow.className, "text-base font-semibold text-[#537188]")}
                     >
                         © Copyright - 2023
                     </span>
 
-                    <Image
-                        src="/images/mk-logo.svg"
-                        alt="MKDev Solutions"
-                        width="75"
-                        height="30"
-                        className="object-contain"
-                    />
+                    <a
+                        href="https://www.mkdevsolutions.com/"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                    >
+                        <Image
+                            src="/images/mk-logo.svg"
+                            alt="MKDev Solutions"
+                            width="75"
+                            height="30"
+                            className="object-contain"
+                        />
+                    </a>
 
                     <ul className="flex flex-wrap items-center justify-between gap-x-4">
                         <li
                             className={cn(
                                 barlow.className,
-                                "text-base font-semibold text-[#537188]"
+                                "text-base font-semibold text-[#537188]",
                             )}
                         >
-                            Termos de Uso
+                            <Link href="/termos-de-uso">Termos de Uso</Link>
                         </li>
 
                         <li
                             className={cn(
                                 barlow.className,
-                                "text-base font-semibold text-[#537188]"
+                                "text-base font-semibold text-[#537188]",
                             )}
                         >
-                            Política de privacidade
+                            <Link href="/politica-de-privacidade">Política de privacidade</Link>
                         </li>
                     </ul>
                 </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Barlow } from "next/font/google";
+import { Element } from "react-scroll";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,12 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-
-const barlow = Barlow({
-    subsets: ["latin"],
-    display: "swap",
-    weight: ["500", "600"],
-});
+import { recoleta, barlow } from "@/lib/fonts";
 
 const isMobilePhone =
     /^\((?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\) (?:[2-8]|9[0-9])[0-9]{3}\-[0-9]{4}$/;
@@ -37,7 +32,9 @@ const contactSchema = z.object({
         .string()
         .min(1, { message: "E-mail é obrigatório" })
         .email({ message: "E-mail inválido" }),
-    message: z.string().min(100, { message: "Mensagem precisa ter no mínimo 100 caracteres" }),
+    message: z
+        .string()
+        .min(100, { message: "Mensagem precisa ter no mínimo 100 caracteres" }),
 });
 
 export const Contact = () => {
@@ -57,14 +54,25 @@ export const Contact = () => {
 
     return (
         <section className="w-full px-6 mb-12 md:px-16 md:mb-24 lg:container lg:mx-auto">
-            <div className="w-full bg-[#537188] rounded-3xl p-6 flex flex-col gap-y-12 shadow-lg sm:p-12 lg:flex-row lg:justify-between lg:gap-x-12">
+            <Element
+                name="contact"
+                className="w-full bg-[#537188] rounded-3xl p-6 flex flex-col gap-y-12 shadow-lg sm:p-12 lg:flex-row lg:justify-between lg:gap-x-12"
+            >
                 <div className="w-full flex flex-col gap-y-6 max-w-xl">
-                    <h2 className="text-3xl text-white font-medium">
+                    <h2
+                        className={cn(
+                            recoleta.className,
+                            "text-3xl text-white font-medium"
+                        )}
+                    >
                         Entre em Contato - Estamos Aqui para Você e Seu Pet
                     </h2>
 
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col">
+                        <form
+                            onSubmit={form.handleSubmit(onSubmit)}
+                            className="flex flex-col"
+                        >
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -73,7 +81,7 @@ export const Contact = () => {
                                         <FormLabel
                                             className={cn(
                                                 barlow.className,
-                                                "text-lg text-white font-medium",
+                                                "text-lg text-white font-medium"
                                             )}
                                         >
                                             Nome
@@ -83,14 +91,17 @@ export const Contact = () => {
                                             <Input
                                                 placeholder="Digite seu nome"
                                                 {...field}
-                                                className="bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                className={cn(
+                                                    barlow.className,
+                                                    "bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                )}
                                             />
                                         </FormControl>
 
                                         <FormMessage
                                             className={cn(
                                                 barlow.className,
-                                                "text-base text-[#FF9292]",
+                                                "text-base text-[#FF9292]"
                                             )}
                                         />
                                     </FormItem>
@@ -105,7 +116,7 @@ export const Contact = () => {
                                         <FormLabel
                                             className={cn(
                                                 barlow.className,
-                                                "text-lg text-white font-medium",
+                                                "text-lg text-white font-medium"
                                             )}
                                         >
                                             Celular
@@ -115,14 +126,17 @@ export const Contact = () => {
                                             <Input
                                                 placeholder="Digite seu celular"
                                                 {...field}
-                                                className="bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                className={cn(
+                                                    barlow.className,
+                                                    "bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                )}
                                             />
                                         </FormControl>
 
                                         <FormMessage
                                             className={cn(
                                                 barlow.className,
-                                                "text-base text-[#FF9292]",
+                                                "text-base text-[#FF9292]"
                                             )}
                                         />
                                     </FormItem>
@@ -137,7 +151,7 @@ export const Contact = () => {
                                         <FormLabel
                                             className={cn(
                                                 barlow.className,
-                                                "text-lg text-white font-medium",
+                                                "text-lg text-white font-medium"
                                             )}
                                         >
                                             E-mail
@@ -147,14 +161,17 @@ export const Contact = () => {
                                             <Input
                                                 placeholder="Digite seu e-mail"
                                                 {...field}
-                                                className="bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                className={cn(
+                                                    barlow.className,
+                                                    "bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                )}
                                             />
                                         </FormControl>
 
                                         <FormMessage
                                             className={cn(
                                                 barlow.className,
-                                                "text-base text-[#FF9292]",
+                                                "text-base text-[#FF9292]"
                                             )}
                                         />
                                     </FormItem>
@@ -169,7 +186,7 @@ export const Contact = () => {
                                         <FormLabel
                                             className={cn(
                                                 barlow.className,
-                                                "text-lg text-white font-medium",
+                                                "text-lg text-white font-medium"
                                             )}
                                         >
                                             Mensagem
@@ -179,14 +196,17 @@ export const Contact = () => {
                                             <Textarea
                                                 placeholder="Digite sua mensagem"
                                                 {...field}
-                                                className="resize-none bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                className={cn(
+                                                    barlow.className,
+                                                    "resize-none bg-[#3A5162] border-0 outline-none focus-visible:outline-none text-base text-white"
+                                                )}
                                             />
                                         </FormControl>
 
                                         <FormMessage
                                             className={cn(
                                                 barlow.className,
-                                                "text-base text-[#FF9292]",
+                                                "text-base text-[#FF9292]"
                                             )}
                                         />
                                     </FormItem>
@@ -196,7 +216,10 @@ export const Contact = () => {
                             <Button
                                 type="submit"
                                 variant="secondary"
-                                className={cn(barlow.className, "text-base font-semibold")}
+                                className={cn(
+                                    barlow.className,
+                                    "text-base font-semibold"
+                                )}
                             >
                                 Enviar
                             </Button>
@@ -225,7 +248,10 @@ export const Contact = () => {
                             />
 
                             <span
-                                className={cn(barlow.className, "text-base font-medium text-white")}
+                                className={cn(
+                                    barlow.className,
+                                    "text-base font-medium text-white"
+                                )}
                             >
                                 Atendimento Personalizado
                             </span>
@@ -241,7 +267,10 @@ export const Contact = () => {
                             />
 
                             <span
-                                className={cn(barlow.className, "text-base font-medium text-white")}
+                                className={cn(
+                                    barlow.className,
+                                    "text-base font-medium text-white"
+                                )}
                             >
                                 Respostas Rápidas e Eficientes
                             </span>
@@ -257,14 +286,17 @@ export const Contact = () => {
                             />
 
                             <span
-                                className={cn(barlow.className, "text-base font-medium text-white")}
+                                className={cn(
+                                    barlow.className,
+                                    "text-base font-medium text-white"
+                                )}
                             >
                                 Comunicação Acessível
                             </span>
                         </li>
                     </ul>
                 </div>
-            </div>
+            </Element>
         </section>
     );
 };
