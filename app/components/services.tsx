@@ -12,7 +12,7 @@ const barlow = Barlow({
 
 export const Services = () => {
     return (
-        <section className="w-full px-6 mb-12 flex flex-col items-center md:px-16 lg:container lg:mx-auto">
+        <section className="w-full px-6 mb-12 flex flex-col items-center md:px-16 md:mb-24 lg:mb-36 lg:container lg:mx-auto">
             <div
                 className={cn(
                     barlow.className,

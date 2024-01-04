@@ -12,7 +12,7 @@ const barlow = Barlow({
 export const About = () => {
     return (
         <section className="w-full px-6 md:px-16 lg:container lg:mx-auto">
-            <div className="bg-orange-100 rounded-3xl w-full flex items-center p-12 shadow-lg mb-12 lg:p-0 md:mb-24">
+            <div className="bg-orange-100 rounded-3xl w-full flex items-center p-12 shadow-lg mb-12 md:mb-24 lg:p-0 lg:mb-36">
                 <div className="hidden lg:flex">
                     <Image
                         src="/images/about-image.png"
