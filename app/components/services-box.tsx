@@ -1,7 +1,9 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 import { recoleta, barlow } from "@/lib/fonts";
+import { boxAnimation } from "@/constants/framer/services-animation";
 
 interface ServicesBoxProps {
     imageUrl: string;
@@ -11,7 +13,7 @@ interface ServicesBoxProps {
 
 export const ServicesBox: React.FC<ServicesBoxProps> = ({ imageUrl, title, desc }) => {
     return (
-        <div className="flex flex-col items-center gap-y-6 max-w-sm">
+        <motion.div variants={boxAnimation} className="flex flex-col items-center gap-y-6 max-w-sm">
             <Image
                 src={imageUrl}
                 alt={title}
@@ -39,6 +41,6 @@ export const ServicesBox: React.FC<ServicesBoxProps> = ({ imageUrl, title, desc 
                     {desc}
                 </p>
             </div>
-        </div>
+        </motion.div>
     );
 };

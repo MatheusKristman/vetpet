@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AlignJustify, ChevronLeft, MessageSquareText, X } from "lucide-react";
 import { Link as ScrollLink } from "react-scroll";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ import { recoleta, barlow } from "@/lib/fonts";
 
 export const Header = () => {
     const pathname = usePathname();
+    const router = useRouter();
 
     const { isMenuOpen, openMenu, closeMenu } = useHeaderStore();
 
@@ -25,6 +26,13 @@ export const Header = () => {
         openMenu();
     }
 
+    function handleLogo() {
+        if (pathname === "/termos-de-uso" || pathname === "/politica-de-privacidade") {
+            router.push("/");
+            return;
+        }
+    }
+
     console.log(pathname);
 
     return (
@@ -35,7 +43,8 @@ export const Header = () => {
                         src="/images/vetpet-logo.svg"
                         alt="VetPet"
                         fill
-                        className="object-contain"
+                        className="object-contain cursor-pointer"
+                        onClick={handleLogo}
                     />
                 </div>
 

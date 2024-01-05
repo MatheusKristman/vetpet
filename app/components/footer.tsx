@@ -3,15 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { barlow } from "@/lib/fonts";
 
 export const Footer = () => {
     const pathname = usePathname();
+    const router = useRouter();
 
-    function scrollToTop() {
+    function handleLogo() {
+        if (pathname === "/termos-de-uso" || pathname === "/politica-de-privacidade") {
+            router.push("/");
+            return;
+        }
+
         scroll.scrollToTop();
     }
 
@@ -25,7 +31,7 @@ export const Footer = () => {
                         width="200"
                         height="65"
                         className="object-contain cursor-pointer"
-                        onClick={scrollToTop}
+                        onClick={handleLogo}
                     />
 
                     <ul className="flex flex-col items-center gap-y-5 md:items-end lg:flex-row lg:gap-x-6">
